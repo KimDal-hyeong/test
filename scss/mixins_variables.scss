@@ -1,0 +1,64 @@
+//기본 컬러
+$color_yellow : #F8B81C;
+$color_default_text : #454545;
+
+//content 문서리스트 컬러
+$color_list_border : #d6d6d6;
+$color_state_original : #AEAEAE;
+$color_state_complete : $color_yellow;
+
+//o moz webkit
+@mixin animation-duration ($times){
+  -webkit-animation-duration: $times;
+  -moz-animation-duration: $times;
+  -o-animation-duration: $times;
+  animation-duration: $times;
+}
+
+@mixin animation-delay ($t){
+  -webkit-animation-delay: $t;
+  -moz-animation-delay: $t;
+  -o-animation-delay: $t;
+  animation-delay: $t;
+}
+
+@mixin animation-name ($t) {
+  -webkit-animation-name: $t;
+  -moz-animation-name: $t;
+  -o-animation-name: $t;
+  animation-name: $t;
+}
+
+@mixin border-radius ($t) {
+  -webkit-border-radius: $t;
+  -moz-border-radius: $t;
+  border-radius: $t;
+}
+
+@mixin transform($t) {
+  -webkit-transform: $t;
+  -moz-transform: $t;
+  -ms-transform: $t;
+  -o-transform: $t;
+  transform: $t;
+}
+
+@mixin box-shadow($sha) {
+  -webkit-box-shadow: $sha;
+  -moz-box-shadow: $sha;
+  box-shadow: $sha;
+}
+
+
+//버튼만듬이
+@mixin make_button($textcolor: #5B4000, $backcolor: #F8B81C, $shadowcolor: #cd9c00) {
+  color: $textcolor;
+  background: $backcolor;
+  @include box-shadow(0 2px 0 0 $shadowcolor);
+  @include border-radius(3px);
+  &:hover {
+    background: darken($backcolor, 6%);
+  }
+}
+
+

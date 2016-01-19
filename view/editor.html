@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../animate.css" rel="stylesheet">
+    <link href="../scss/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script>
+        var popSignModal = function () {
+            var signPop = document.getElementById('sign_pop');
+            var blackWrap = document.getElementById('black_wrapper');
+            var editorBody = document.getElementById('editor_body');
+            signPop.style.display = 'block';
+            blackWrap.style.display = 'block';
+            editorBody.style.height = 100.1 + 'vh';
+            editorBody.style.overflow = 'hidden';
+        }
+
+        var popstampModal = function () {
+            var stampPop = document.getElementById('stamp_pop');
+            var blackWrap = document.getElementById('black_wrapper');
+            var editorBody = document.getElementById('editor_body');
+            stampPop.style.display = 'block';
+            blackWrap.style.display = 'block';
+            editorBody.style.height = 100.1 + 'vh';
+            editorBody.style.overflow = 'hidden';
+        }
+
+        var closeModal = function () {
+            var signPop = document.getElementById('sign_pop');
+            var stampPop = document.getElementById('stamp_pop');
+            var blackWrap = document.getElementById('black_wrapper');
+            var editorBody = document.getElementById('editor_body');
+            signPop.style.display = 'none';
+            stampPop.style.display = 'none';
+            blackWrap.style.display = 'none';
+            editorBody.style.height = 'inherit';
+            editorBody.style.overflow = 'inherit';
+        }
+
+        var clickSignTab = function(e){
+            var fromTabNum = $('#sign_pop .pop_tab>li.active').data('tabnum');
+            var toTabNum = $(e).data("tabnum");
+
+            $('#sign_pop .pop_body').removeClass('animated sign_2to3 sign_1to2 sign_2to1 sign_3to2 sign_1to3 sign_3to1');
+            $('#sign_pop .pop_tab li').removeClass('active');
+            $('#sign_pop .pop_insert_bt').removeClass('animated fadeInForTab');
+            $('#sign_pop .pop_body>div').removeClass('active animated fadeInForTab');
+
+            $(e).addClass('active');
+            $('#sign_pop .pop_body>div:nth-child('+ $(e).data("tabnum") + ')').addClass('active animated fadeInForTab');
+            $('#sign_pop .pop_body').addClass('animated sign_' + fromTabNum + 'to' + toTabNum);
+            $('#sign_pop .pop_insert_bt').addClass('animated fadeInForTab');
+        }
+
+        var clickStampTab = function(e,num){
+            var fromTabNum = $('#stamp_pop .pop_tab>li.active').data('tabnum');
+            var toTabNum = $(e).data("tabnum");
+
+            $('#stamp_pop .pop_body').removeClass('animated stamp_1to2 stamp_2to1');
+            $('#stamp_pop .pop_tab li').removeClass('active');
+            $('#stamp_pop .pop_insert_bt').removeClass('animated fadeInForTab');
+            $('#stamp_pop .pop_body>div').removeClass('active animated fadeInForTab');
+
+            $(e).addClass('active');
+            $('#stamp_pop .pop_body>div:nth-child('+ $(e).data("tabnum") + ')').addClass('active animated fadeInForTab');
+            $('#stamp_pop .pop_body').addClass('animated stamp_' + fromTabNum + 'to' + toTabNum);
+            $('#stamp_pop .pop_insert_bt').addClass('animated fadeInForTab');
+        }
+    </script>
+</head>
+<body>
+<!--에디터 헤더-->
+<div id="editor_header">
+    <a id="editor_close_bt">X나가기</a>
+    <button id="sign_insert_bt" onclick="popSignModal()"><i class="fa fa-pencil-square-o"></i> 사인 넣기</button>
+    <button id="stamp_insert_bt" onclick="popstampModal()"><i class="fa fa-stop-circle-o"></i> 도장 넣기</button>
+    <button id="view_size_up_bt"><i class="fa fa-search-plus"></i></button>
+    <button id="view_size_down_bt"><i class="fa fa-search-minus"></i></button>
+    <a id="editor_complete_bt">완료></a>
+</div>
+<!--에디터 바디-->
+<div id="editor_body">
+    <div id="page_navi">
+        <div class="page_icon active"><span>1</span></div>
+        <div class="page_icon"><span>2</span></div>
+        <div class="page_icon"><span>3</span></div>
+        <div class="page_icon"><span>4</span></div>
+
+    </div>
+    <div class="paper_contaner">
+        <div class="preview_paper" style="background-image: url('../img/sample_doc.gif')"></div>
+        <div class="preview_paper" style="background-image: url('../img/sample_doc.gif')"></div>
+    </div>
+</div>
+
+<!--팝업용 검은 배경-->
+<div id="black_wrapper" style="display: none" class="animated fadeInCustom"></div>
+
+<!--사인 만드는 팝업-->
+<div id="sign_pop" style="display: none" class="animated fadeInRightCustom">
+    <ul class="pop_tab">
+        <li class="active" onclick="clickSignTab(this)" data-tabnum="1">사인 그리기</li>
+        <li onclick="clickSignTab(this)" data-tabnum="2">사인 만들기</li>
+        <li onclick="clickSignTab(this)" data-tabnum="3">저장된 사인</li>
+    </ul>
+    <a class="pop_close_bt" onclick="closeModal()"><i class="fa fa-times"></i> 닫기</a>
+    <div class="pop_body">
+
+        <!--사인 그리기 탭-->
+        <div class="active" id="draw_sign">
+            <canvas width="528" height="200"></canvas>
+            <p>마우스로 사인을 그리세요</p>
+        </div>
+        <!---->
+
+
+        <!--사인 만들기 탭-->
+        <div id="make_sign">
+            <form class="select_lang">
+                <label>
+                    <input type="radio" name="kor_or_eng" checked>한글
+                </label>
+                <label>
+                    <input type="radio" name="kor_or_eng">영문
+                </label>
+                <input type="text" placeholder="이름을 입력해 주세요">
+                <button type="submit">확인</button>
+            </form>
+            <div class="sign_list">
+                <div class="sign_img select"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+            </div>
+        </div>
+        <!---->
+
+        <!--저장된 사인 탭-->
+        <div id="saved_sign">
+            <div class="sign_list">
+                <div class="sign_img select"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+                <div class="sign_img"></div>
+            </div>
+        </div>
+        <!---->
+
+        <button type="button" class="pop_insert_bt">입력하기</button>
+    </div>
+</div>
+
+<!--도장 만드는 팝업-->
+<div id="stamp_pop" style="display: none" class="animated fadeInRightCustom">
+    <ul class="pop_tab">
+        <li onclick="clickStampTab(this,1)" class="active"  data-tabnum="1">도장 만들기</li>
+        <li onclick="clickStampTab(this,2)"  data-tabnum="2">저장된 도장</li>
+    </ul>
+    <a class="pop_close_bt" onclick="closeModal()"><i class="fa fa-times"></i> 닫기</a>
+    <div class="pop_body">
+        <!--도장 만들기 탭-->
+        <div class="active" id="make_stamp">
+            <form class="select_lang">
+                <label>
+                    <input type="radio" name="kor_or_eng" checked>한글
+                </label>
+                <label>
+                    <input type="radio" name="kor_or_eng">한자
+                </label>
+                <input type="text" placeholder="이름을 입력해 주세요">
+                <button type="submit">확인</button>
+            </form>
+            <div class="stamp_list">
+                <div class="stamp_img select"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+            </div>
+        </div>
+        <!---->
+
+        <!--저장된 도장 탭-->
+        <div id="saved_stamp">
+            <div class="stamp_list">
+                <div class="stamp_img select"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+                <div class="stamp_img"></div>
+            </div>
+        </div>
+        <!---->
+
+        <button type="button" class="pop_insert_bt">입력하기</button>
+    </div>
+</div>
+<div id="footer">
+    <span>Copyright(c)2016 LawoaFactory 로아팩토리 대표 이영준 (사업자 번호 237-23-00090)&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <a>| 문의하기</a>
+    <a>| 이용약관</a>
+    <a>| 개인정보취급방침 |</a>
+</div>
+</body>
+</html>

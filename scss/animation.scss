@@ -1,0 +1,280 @@
+//문서 리스트뷰 드롭다운 메뉴 애니메이션
+@-webkit-keyframes custom_dropdown {
+  from {
+    @include transform(translate3d(0, -50%, 0) scale3d(1, 0, 1));
+  }
+
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+@keyframes custom_dropdown {
+  from {
+    @include transform(translate3d(0, -50%, 0) scale3d(1, 0, 1));
+  }
+
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+
+
+//에디터 모달 배경 검은 덮음이 애니메이션
+@-webkit-keyframes fadeInCustom {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.4;
+  }
+}
+@keyframes fadeInCustom {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.4;
+  }
+}
+.fadeInCustom {
+  -webkit-animation-name: fadeInCustom;
+  animation-name: fadeInCustom;
+  @include animation-duration(0.3s);
+}
+
+
+
+
+
+
+
+
+
+
+
+//모달 등장 애니메이션
+@-webkit-keyframes fadeInRightCustom {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+@keyframes fadeInRightCustom {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.fadeInRightCustom {
+  -webkit-animation-name: fadeInRightCustom;
+  animation-name: fadeInRightCustom;
+  @include animation-delay(0.2s);
+  @include animation-duration(0.2s);
+}
+
+
+//사인 모달 탭 이동 애니메이션
+//알맹이 페이드 인 애니메이션
+@keyframes fadeInForTab {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeInForTab {
+  -webkit-animation-name: fadeInForTab;
+  animation-name: fadeInForTab;
+  @include animation-duration(0.3s);
+  @include animation-delay(0.1s);
+}
+
+@-webkit-keyframes sign_1to2 {
+  from {
+    @include transform(translate3d(0, -105px, 0) scale3d(1, 0.56, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+@keyframes sign_1to2 {
+  from {
+    @include transform(translate3d(0, -105px, 0) scale3d(1, 0.56, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+.sign_1to2 {
+  -webkit-animation-name: sign_1to2;
+  animation-name: sign_1to2;
+  @include animation-duration(0.2s);
+}
+
+
+@-webkit-keyframes sign_1to3 {
+   from {
+     @include transform(translate3d(0, -81px, 0) scale3d(1, 0.62, 1));
+   }
+   to {
+     @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+   }
+ }
+@keyframes sign_1to3 {
+  from {
+    @include transform(translate3d(0, -81px, 0) scale3d(1, 0.62, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+.sign_1to3 {
+  -webkit-animation-name: sign_1to3;
+  animation-name: sign_1to3;
+  @include animation-duration(0.2s);
+}
+
+@-webkit-keyframes sign_2to1 {
+  from {
+    @include transform(translate3d(0, 103px, 0) scale3d(1, 1.77, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+@keyframes sign_2to1 {
+  from {
+    @include transform(translate3d(0, 103px, 0) scale3d(1, 1.77, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+.sign_2to1 {
+  -webkit-animation-name: sign_2to1;
+  animation-name: sign_2to1;
+  @include animation-duration(0.2s);
+}
+
+@-webkit-keyframes sign_2to3 {
+  from {
+    @include transform(translate3d(0, 23px, 0) scale3d(1, 1.11, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+@keyframes sign_2to3 {
+  from {
+    @include transform(translate3d(0, 23px, 0) scale3d(1, 1.11, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+.sign_2to3 {
+  -webkit-animation-name: sign_2to3;
+  animation-name: sign_2to3;
+  @include animation-duration(0.2s);
+}
+
+@-webkit-keyframes sign_3to1 {
+  from {
+    @include transform(translate3d(0, 79px, 0) scale3d(1, 1.59, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+@keyframes sign_3to1 {
+  from {
+    @include transform(translate3d(0, 79px, 0) scale3d(1, 1.59, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+.sign_3to1 {
+  -webkit-animation-name: sign_3to1;
+  animation-name: sign_3to1;
+  @include animation-duration(0.2s);
+}
+
+@-webkit-keyframes sign_3to2 {
+  from {
+    @include transform(translate3d(0, -26px, 0) scale3d(1, 0.89, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+@keyframes sign_3to2 {
+  from {
+    @include transform(translate3d(0, -26px, 0) scale3d(1, 0.89, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+.sign_3to2 {
+  -webkit-animation-name: sign_3to2;
+  animation-name: sign_3to2;
+  @include animation-duration(0.2s);
+}
+
+
+//도장 탭이동 애니메이션
+@-webkit-keyframes stamp_1to2 {
+  from {
+    @include transform(translate3d(0, 6px, 0) scale3d(1, 1.03, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+@keyframes stamp_1to2 {
+  from {
+    @include transform(translate3d(0, 6px, 0) scale3d(1, 1.03, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+.stamp_1to2 {
+  -webkit-animation-name: stamp_1to2;
+  animation-name: stamp_1to2;
+  @include animation-duration(0.2s);
+}
+
+@-webkit-keyframes stamp_2to1 {
+  from {
+    @include transform(translate3d(0, -7px, 0) scale3d(1, 0.97, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+@keyframes stamp_2to1 {
+  from {
+    @include transform(translate3d(0, -7px, 0) scale3d(1, 0.97, 1));
+  }
+  to {
+    @include transform(translate3d(0, 0, 0) scale3d(1, 1, 1));
+  }
+}
+.stamp_2to1 {
+  -webkit-animation-name: stamp_2to1;
+  animation-name: stamp_2to1;
+  @include animation-duration(0.2s);
+}
