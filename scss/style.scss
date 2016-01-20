@@ -915,7 +915,7 @@ a {
           input[type=text],input[type=password],input[type=email] {
             padding: 8px 10px;
             width: 380px;
-            @include border-radius(3px);
+            @include border-radius(4px);
           }
         }
       }
